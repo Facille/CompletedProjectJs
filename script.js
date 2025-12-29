@@ -30,7 +30,6 @@ const slidesData = [
   },
 ];
 
-// DOM
 const slider = document.getElementById("slider");
 const dotsContainer = document.getElementById("dots");
 const linksContainer = document.getElementById("project-links");
@@ -40,12 +39,10 @@ const nextArrow = document.querySelector(".arrow-next");
 const currentSlideEl = document.getElementById("current-slide");
 const totalSlidesEl = document.getElementById("total-slides");
 
-// state
 let currentIndex = 0;
 
 function buildUI() {
   slidesData.forEach((slide, index) => {
-    // slide
     const slideEl = document.createElement("div");
     slideEl.className = `slide ${index === 0 ? "active" : ""}`;
     slideEl.dataset.slideIndex = String(index);
@@ -94,13 +91,11 @@ function buildUI() {
 
     slider.appendChild(slideEl);
 
-    // dot
     const dotEl = document.createElement("div");
     dotEl.className = `dot ${index === 0 ? "active" : ""}`;
     dotEl.dataset.slideIndex = String(index);
     dotsContainer.appendChild(dotEl);
 
-    // link (tab)
     const linkEl = document.createElement("div");
     linkEl.className = `project-link ${index === 0 ? "active" : ""}`;
     linkEl.dataset.slideIndex = String(index);
@@ -109,11 +104,9 @@ function buildUI() {
   });
 }
 
-/** универсальная функция переключения */
 function goToSlide(index) {
   const total = slidesData.length;
 
-  // кольцо
   if (index < 0) index = total - 1;
   if (index >= total) index = 0;
 
@@ -127,7 +120,6 @@ function goToSlide(index) {
   dotEls.forEach((el, i) => el.classList.toggle("active", i === currentIndex));
   linkEls.forEach((el, i) => el.classList.toggle("active", i === currentIndex));
 
-  // обновляем контент активного слайда
   const activeSlideEl = slideEls[currentIndex];
   const s = slidesData[currentIndex];
 
@@ -140,7 +132,6 @@ function goToSlide(index) {
   activeSlideEl.querySelector('[data-field="time"]').textContent = s.repairTimeText;
   activeSlideEl.querySelector('[data-field="cost"]').textContent = s.repairCostText;
 
-  // нумерация
   currentSlideEl.textContent = String(currentIndex + 1).padStart(2, "0");
 }
 
