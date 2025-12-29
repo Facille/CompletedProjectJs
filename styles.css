@@ -1,0 +1,287 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root{
+  --bg: #131313;
+  --gold: #E3B873;
+  --text: #ffffff;
+  --muted2: rgba(255,255,255,0.3);
+}
+
+body {
+  background-color: var(--bg);
+  font-family: 'Nunito Sans', sans-serif;
+  min-height: 100vh;
+  color: var(--text);
+}
+
+/* container */
+.container {
+  max-width: 1440px;
+  margin: 0 auto;
+
+  /* опускаем контент ниже */
+  padding: 95px 60px 60px;
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* верхние ссылки */
+.project-links {
+  display: flex;
+  justify-content: flex-start;
+  gap: 60px;
+  padding: 20px 0 40px;
+  padding-left: 42%;
+}
+
+.project-link {
+  font-family: 'Yeseva One', cursive;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--muted2);
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+.project-link:hover,
+.project-link.active {
+  color: var(--gold);
+}
+
+.project-link.active::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 1px;
+  background-color: var(--gold);
+}
+
+/* slider */
+.slider {
+  position: relative;
+  flex: 0 0 auto;         /* важно: НЕ растягиваем на всю высоту */
+  display: flex;
+  overflow: hidden;
+  min-height: 520px;      /* чтобы область слайдов была стабильной */
+}
+
+/* slide */
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  z-index: 1;             /* слайды ниже controls */
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+/* left */
+.slide-info {
+  width: 40%;
+  padding-top: 40px;
+}
+
+/* header: линия на уровне PROJECTS */
+.info-header{
+  display: flex;
+  align-items: flex-end;  /* ключ */
+  gap: 28px;
+  margin-bottom: 22px;
+}
+
+.slide-info h2 {
+  font-family: 'Yeseva One', cursive;
+  font-size: 27px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.info-line-marker{
+  width: 92px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 0 6px 0;      /* подгон по уровню PROJECTS */
+}
+
+/* белый текст */
+.info-desc {
+  max-width: 360px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: #fff;
+  margin-bottom: 42px;
+}
+
+.info-grid{
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 30px;
+  margin-bottom: 56px;
+}
+
+.info-item {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.info-label {
+  font-family: 'Yeseva One', cursive;
+  font-size: 14px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.info-value {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #fff;
+}
+
+/* right image */
+.slide-image {
+  flex: 1;
+  padding-top: 40px;
+}
+
+.slide-image img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  display: block;
+}
+
+/* controls */
+.slider-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  /* ближе к тексту */
+  padding: 0;
+  margin-top: -25px;
+
+  position: relative;
+  z-index: 10;            /* controls поверх слайдов */
+}
+
+/* left controls align under left column */
+.navigation-controls {
+  width: 40%;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  justify-content: flex-start;
+}
+
+/* arrows: “твёрдая” кликабельная зона */
+.arrow {
+  width: 44px;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: transparent;
+  border: none;
+
+  padding: 0;
+  margin: 0;
+  line-height: 0;
+
+  cursor: pointer;
+
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.arrow:hover { opacity: 1; }
+
+/* КЛЮЧ: ничего внутри стрелки не перехватывает мышь */
+.arrow * {
+  pointer-events: none;
+}
+.arrow img{
+  display: block;
+  user-select: none;
+}
+
+/* dots */
+.dots {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.25);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.dot.active {
+  background-color: #fff;
+}
+
+/* counter */
+.counter{
+  width: 60%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: 'Yeseva One', cursive;
+  gap: 8px;
+  color: rgba(255,255,255,0.3);
+}
+
+.counter .current{
+  color: #fff;
+}
+
+/* responsive */
+@media (max-width: 1100px) {
+  .container { padding: 40px 24px 24px; }
+  .project-links { padding-left: 0; justify-content: center; flex-wrap: wrap; }
+
+  .slider { min-height: auto; overflow: visible; }
+
+  .slide {
+    position: relative;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .slide-info { width: 100%; padding-top: 0; }
+  .slide-image { padding-top: 0; }
+  .slide-image img { height: auto; aspect-ratio: 16 / 9; }
+
+  .slider-controls{
+    margin-top: 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .navigation-controls{ width: 100%; }
+  .counter{ width: 100%; justify-content: flex-start; }
+}

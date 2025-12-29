@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Completed Projects Slider</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,700|Yeseva+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="projects">
+    <div class="container">
+      <div class="project-links" id="project-links"></div>
+
+      <div class="slider" id="slider"></div>
+
+      <div class="slider-controls">
+        <div class="navigation-controls">
+          <button class="arrow arrow-prev" type="button" aria-label="Previous slide">
+            <img src="img/left_arrow.svg" alt="Previous">
+          </button>
+
+          <div class="dots" id="dots" aria-label="Choose slide"></div>
+
+          <button class="arrow arrow-next" type="button" aria-label="Next slide">
+            <img src="img/right_arrow.svg" alt="Next">
+          </button>
+        </div>
+
+        <!-- Нумерация справа под фото -->
+        <div class="counter">
+          <span class="current" id="current-slide">01</span>
+          <span>/</span>
+          <span id="total-slides">03</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
